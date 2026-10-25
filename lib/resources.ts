@@ -10,6 +10,7 @@ export type Field = {
   required?: boolean;
   placeholder?: string;
   lowercase?: boolean;
+  defaultValue?: string | number;   // used when the field is left blank (for NOT NULL columns)
   // For selects: rows of `table` become options (value = id, label = labelColumn).
   options?: { table: string; labelColumn: string; allowNone?: string };
 };
@@ -31,7 +32,7 @@ export const RESOURCES: Record<string, Resource> = {
     fields: [
       { name: 'term', label: 'Term', type: 'text', required: true, placeholder: 'e.g. Butler' },
       { name: 'definition', label: 'Definition', type: 'textarea', required: true },
-      { name: 'priority', label: 'Priority', type: 'number' },
+      { name: 'priority', label: 'Priority', type: 'number', defaultValue: 0, placeholder: '0' },
     ],
   },
   examples: {

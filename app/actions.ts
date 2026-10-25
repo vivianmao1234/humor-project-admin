@@ -72,6 +72,7 @@ function parseFields(resourceKey: string, values: Record<string, string | boolea
     }
     let value = typeof raw === 'string' ? raw.trim() : '';
     if (field.lowercase) value = value.toLowerCase();
+    if (!value && field.defaultValue !== undefined) value = String(field.defaultValue);
     if (!value) {
       if (field.required) return { error: `${field.label} is required.` };
       row[field.name] = null;
